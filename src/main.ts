@@ -3,6 +3,7 @@ import { logger } from './helpers/logger';
 import { validateCustomToken } from './token-middleware';
 import { bodyNextLink } from './endpoints/body-next-link';
 import { helloWorld } from './endpoints/hello-world';
+import { detailsPage } from './endpoints/details-page';
 
 // Dotenv loads all env variables from .env, but you still need to provdie theese when deployed
 require('dotenv').config({ path: `.env` });
@@ -26,6 +27,7 @@ logger.debug(`Bell Rock will now try to open up the connection on port ${port}`)
 
 app.get('/helloWorld', validateCustomToken, helloWorld);
 app.get('/bodyNextLink', validateCustomToken, bodyNextLink);
+app.get('/detailsPage/:id', validateCustomToken, detailsPage);
 
 app.listen(port, function() {
     logger.info(`🔥  Bell Rock is up and listening on port: ${port} - fire away 🏹`);
